@@ -17,10 +17,8 @@
 7. [KERBEROS / AUTHENTICATION (AD DS Logs)](#7-kerberos--authentication-ad-ds-logs)
 8. [REMOTE DESKTOP SERVICES (RDP Logs)](#8-remote-desktop-services-rdp-logs)
 9. [FILE SHARE / SMB ACTIVITY](#9-file-share--smb-activity)
-10. [REGISTRY AUDITING](#10-registry-auditing)
-11. [TASK SCHEDULER](#11-task-scheduler)
-12. [WINDOWS DEFENDER / ANTIVIRUS](#12-windows-defender--antivirus)
-13. [EVENT LOG SERVICE (AUDIT SYSTEM)](#13-event-log-service-audit-system)
+10. [TASK SCHEDULER](#10-task-scheduler)
+11. [WINDOWS DEFENDER / ANTIVIRUS](#11-windows-defender--antivirus)
 
 ---
 
@@ -109,16 +107,8 @@
 
 ---
 
-## 10. REGISTRY AUDITING
+## 10. TASK SCHEDULER
 
 ---
 
-## 11. TASK SCHEDULER
-
----
-
-## 12. WINDOWS DEFENDER / ANTIVIRUS
-
----
-
-## 13. EVENT LOG SERVICE (AUDIT SYSTEM)
+## 11. WINDOWS DEFENDER / ANTIVIRUS
