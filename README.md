@@ -1,6 +1,6 @@
 # Windows EventID Book
 
-[Windows EventID Book](banner-image.png)
+![Windows EventID Book](banner-image.png)
 
 **Windows EventID Book** is a structured reference of Windows Event IDs organized for threat hunting, DFIR analysis, and SOC investigations.
 
