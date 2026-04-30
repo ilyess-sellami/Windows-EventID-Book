@@ -1,8 +1,18 @@
-# Windows EventID Book
+# 📘 Windows EventID Book
 
-![Windows EventID Book](banner-image.png)
+<p align="center">
+  <img src="banner-image.png" alt="Windows EventID Book Banner" width="100%">
+</p>
 
-**Windows EventID Book** is a structured reference of Windows Event IDs organized for threat hunting, DFIR analysis, and SOC investigations.
+## Overview
+
+**Windows EventID Book** is a curated and structured reference of Windows Event IDs, designed to support:
+
+- 🛡️ Threat Hunting  
+- 🔎 DFIR (Digital Forensics & Incident Response)  
+- 📡 SOC Analysis & Monitoring  
+
+This project helps security professionals quickly identify, understand, and investigate critical Windows events during real-world scenarios.
 
 ---
 
