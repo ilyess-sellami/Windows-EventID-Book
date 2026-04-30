@@ -10,17 +10,17 @@
 
 1. [SECURITY (Security.evtx)](#1-security-securityevtx)
 2. [SYSMON (Sysmon Operational Log)](#2-sysmon-sysmon-operational-log)
-3. SYSTEM (System.evtx)
-4. APPLICATION (Application.evtx)
-5. FIREWALL (Windows Defender Firewall Logs)
-6. POWERSHELL
-7. KERBEROS / AUTHENTICATION (AD DS Logs)
-8. REMOTE DESKTOP SERVICES (RDP Logs)
-9. FILE SHARE / SMB ACTIVITY
-10. REGISTRY AUDITING
-11. TASK SCHEDULER
-12. WINDOWS DEFENDER / ANTIVIRUS
-13. EVENT LOG SERVICE (AUDIT SYSTEM)
+3. [SYSTEM (System.evtx)](#3-system-systemevtx)
+4. [APPLICATION (Application.evtx)](#4-application-applicationevtx)
+5. [FIREWALL (Windows Defender Firewall Logs)](#5-firewall-windows-defender-firewall-logs)
+6. [POWERSHELL](#6-powershell)
+7. [KERBEROS / AUTHENTICATION (AD DS Logs)](#7-kerberos--authentication-ad-ds-logs)
+8. [REMOTE DESKTOP SERVICES (RDP Logs)](#8-remote-desktop-services-rdp-logs)
+9. [FILE SHARE / SMB ACTIVITY](#9-file-share--smb-activity)
+10. [REGISTRY AUDITING](#10-registry-auditing)
+11. [TASK SCHEDULER](#11-task-scheduler)
+12. [WINDOWS DEFENDER / ANTIVIRUS](#12-windows-defender--antivirus)
+13. [EVENT LOG SERVICE (AUDIT SYSTEM)](#13-event-log-service-audit-system)
 
 ---
 
@@ -80,3 +80,45 @@
 | 22       | DNS Query                    | DNS request made by process          | Domain-based C2 detection, DGA malware                  |
 
 ---
+
+## 3. SYSTEM (System.evtx)
+
+---
+
+## 4. APPLICATION (Application.evtx)
+
+---
+
+## 5. FIREWALL (Windows Defender Firewall Logs)
+
+---
+
+## 6. POWERSHELL
+
+---
+
+## 7. KERBEROS / AUTHENTICATION (AD DS Logs)
+
+---
+
+## 8. REMOTE DESKTOP SERVICES (RDP Logs)
+
+---
+
+## 9. FILE SHARE / SMB ACTIVITY
+
+---
+
+## 10. REGISTRY AUDITING
+
+---
+
+## 11. TASK SCHEDULER
+
+---
+
+## 12. WINDOWS DEFENDER / ANTIVIRUS
+
+---
+
+## 13. EVENT LOG SERVICE (AUDIT SYSTEM)
