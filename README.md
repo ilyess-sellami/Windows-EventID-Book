@@ -4,6 +4,8 @@
   <img src="banner-image.png" alt="Windows EventID Book Banner" width="100%">
 </p>
 
+---
+
 ## Overview
 
 **Windows EventID Book** is a curated and structured reference of Windows Event IDs, designed to support:
