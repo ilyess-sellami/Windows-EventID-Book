@@ -27,9 +27,9 @@ This project helps security professionals quickly identify, understand, and inve
 5. [FIREWALL (Windows Defender Firewall Logs)](#5-firewall-windows-defender-firewall-logs)
 6. [POWERSHELL](#6-powershell)
 7. [KERBEROS / AUTHENTICATION (AD DS Logs)](#7-kerberos--authentication-ad-ds-logs)
-8. [FILE SHARE / SMB ACTIVITY](#9-file-share--smb-activity)
-9. [TASK SCHEDULER](#10-task-scheduler)
-10. [WINDOWS DEFENDER / ANTIVIRUS](#11-windows-defender--antivirus)
+8. [FILE SHARE / SMB ACTIVITY]()
+9. [TASK SCHEDULER]()
+10. [WINDOWS DEFENDER / ANTIVIRUS]()
 
 ---
 
@@ -174,10 +174,49 @@ This project helps security professionals quickly identify, understand, and inve
 
 ## 8. FILE SHARE / SMB ACTIVITY
 
+| Event ID | Name                      | Description                     | Threat Hunting Value                                     |
+| -------- | ------------------------- | ------------------------------- | -------------------------------------------------------- |
+| 5140     | Network Share Access      | A network share was accessed    | Track who accessed which share                           |
+| 5142     | Share Created             | A new network share was created | Suspicious share creation (data staging / persistence)   |
+| 5143     | Share Modified            | Share configuration changed     | Tampering / unauthorized exposure                        |
+| 5144     | Share Deleted             | Network share removed           | Cleanup after attacker activity                          |
+| 5145     | Detailed Share Access     | File-level access on a share    | Identify accessed files (sensitive data tracking)        |
+| 4624     | Successful Logon (Type 3) | Network logon (SMB)             | Confirm SMB authentication                               |
+| 4625     | Failed Logon              | Failed authentication           | Brute-force attempts on SMB                              |
+| 4776     | NTLM Authentication       | NTLM auth attempt               | Pass-the-hash / legacy SMB abuse                         |
+
 ---
 
 ## 9. TASK SCHEDULER
 
+| Event ID | Name                     | Description                         | Threat Hunting Value                   |
+| -------- | ------------------------ | ----------------------------------- | -------------------------------------- |
+| 106      | Task Registered          | A new scheduled task was created    | Persistence via scheduled tasks        |
+| 140      | Task Updated             | Existing task was modified          | Attackers modifying legitimate tasks   |
+| 141      | Task Deleted             | Scheduled task removed              | Defense evasion / cleanup              |
+| 200      | Task Action Started      | Task execution started              | Track execution of payloads            |
+| 201      | Task Action Completed    | Task execution finished             | Execution lifecycle tracking           |
+| 203      | Task Created (Legacy)    | Task created (older logging format) | Persistence detection on older systems |
+| 300      | Action Failed            | Task action failed                  | Broken or blocked malicious execution  |
+| 310      | Task Registration Failed | Task could not be created           | Failed persistence attempt             |
+
 ---
 
 ## 10. WINDOWS DEFENDER / ANTIVIRUS
+
+| Event ID | Name                           | Description                                      | Threat Hunting Value                            |
+| -------- | ------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
+| 1006     | Malware Detection              | Windows Defender detected malware                | Primary malware detection signal                |
+| 1007     | Malware Action Taken           | Defender took action on detected malware         | Confirmed remediation (quarantine/delete/block) |
+| 1008     | Malware Remediation Failed     | Failed attempt to remove malware                 | Active compromise / persistence risk            |
+| 1116     | Malware Detected               | Real-time protection detected threat             | Early-stage infection detection                 |
+| 1117     | Action Taken on Threat         | Threat was blocked or removed                    | Validate Defender response                      |
+| 1118     | Threat Quarantined             | File isolated in quarantine                      | Confirm containment                             |
+| 1119     | Threat Restored                | User or process restored malware from quarantine | Possible attacker interference                  |
+| 5001     | Real-Time Protection Disabled  | Defender real-time protection turned off         | Defense evasion (critical indicator)            |
+| 5004     | Defender Configuration Changed | Security settings modified                       | Attempt to weaken defenses                      |
+| 5007     | Defender Settings Changed      | Core protection settings changed                 | Persistence / defense evasion                   |
+| 5010     | Antivirus Scan Started         | Scan initiated                                   | Context for investigation                       |
+| 5011     | Antivirus Scan Completed       | Scan finished                                    | Post-incident validation                        |
+| 5013     | Definition Update Failed       | Virus definitions failed to update               | Reduced detection capability (attack window)    |
+
