@@ -10,9 +10,9 @@
 
 **Windows EventID Book** is a curated and structured reference of Windows Event IDs, designed to support:
 
-- 🛡️ Threat Hunting  
-- 🔎 DFIR (Digital Forensics & Incident Response)  
-- 📡 SOC Analysis & Monitoring  
+- Threat Hunting  
+- DFIR (Digital Forensics & Incident Response)  
+- SOC Analysis & Monitoring  
 
 This project helps security professionals quickly identify, understand, and investigate critical Windows events during real-world scenarios.
 
