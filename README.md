@@ -27,10 +27,9 @@ This project helps security professionals quickly identify, understand, and inve
 5. [FIREWALL (Windows Defender Firewall Logs)](#5-firewall-windows-defender-firewall-logs)
 6. [POWERSHELL](#6-powershell)
 7. [KERBEROS / AUTHENTICATION (AD DS Logs)](#7-kerberos--authentication-ad-ds-logs)
-8. [REMOTE DESKTOP SERVICES (RDP Logs)](#8-remote-desktop-services-rdp-logs)
-9. [FILE SHARE / SMB ACTIVITY](#9-file-share--smb-activity)
-10. [TASK SCHEDULER](#10-task-scheduler)
-11. [WINDOWS DEFENDER / ANTIVIRUS](#11-windows-defender--antivirus)
+8. [FILE SHARE / SMB ACTIVITY](#9-file-share--smb-activity)
+9. [TASK SCHEDULER](#10-task-scheduler)
+10. [WINDOWS DEFENDER / ANTIVIRUS](#11-windows-defender--antivirus)
 
 ---
 
@@ -93,34 +92,92 @@ This project helps security professionals quickly identify, understand, and inve
 
 ## 3. SYSTEM (System.evtx)
 
+| Event ID | Name                       | Description                                | Threat Hunting Value                                       |
+| -------- | -------------------------- | ------------------------------------------ | ---------------------------------------------------------- |
+| 7045     | Service Installed          | A new service was installed                | Strong persistence indicator (malware/services)            |
+| 7040     | Service Start Type Changed | Service startup type modified              | Persistence (auto-start services)                          |
+| 7036     | Service State Changed      | Service started or stopped                 | Track suspicious service execution                         |
+| 7034     | Service Crashed            | Service terminated unexpectedly            | Crash from exploit or malicious interference               |
+| 7022     | Service Failed to Start    | Service failed to start                    | Broken persistence or blocked malware                      |
+| 7000     | Service Failed to Start    | Service could not start                    | Suspicious or misconfigured services                       |
+| 6008     | Unexpected Shutdown        | System shut down unexpectedly              | Forced shutdown (possible attacker activity)               |
+| 1074     | System Shutdown Initiated  | Shutdown/restart triggered by process/user | Identify who initiated shutdown (key in IR investigations) |
+| 41       | Kernel Power Critical      | System rebooted without clean shutdown     | Crash, exploit, or forced reboot                           |
+| 1102     | Audit Log Cleared (Mirror) | Security logs cleared (system reflection)  | Defense evasion / log tampering                            |
+
 ---
 
 ## 4. APPLICATION (Application.evtx)
+
+| Event ID | Name                     | Description                        | Threat Hunting Value                                      |
+| -------- | ------------------------ | ---------------------------------- | --------------------------------------------------------- |
+| 1000     | Application Error        | An application crashed             | Crash of security tools, exploit attempts, malware issues |
+| 1001     | Windows Error Reporting  | Crash report generated             | Correlate with suspicious crashes (e.g. LSASS, AV)        |
+| 1026     | .NET Runtime Exception   | .NET application error             | Malicious .NET payloads, offensive tools                  |
+| 11707    | Application Installed    | Application successfully installed | Unauthorized software installation                        |
+| 11724    | Application Uninstalled  | Application removed                | Defense evasion (removing tools)                          |
+| 1033     | MSI Installation Success | MSI package installed              | Software deployment tracking / persistence                |
+| 1034     | MSI Installation Failed  | MSI installation failed            | Failed malicious installation attempts                    |
+| 1002     | Application Hang         | Application stopped responding     | Exploit attempts / process instability                    |
+| 1309     | ASP.NET Event            | Web application error              | Web exploitation attempts (on servers)                    |
+| 18456    | SQL Server Login Failed  | Failed login to SQL Server         | Brute force / credential attacks on databases             |
+| 33205    | SQL Server Audit Event   | SQL Server audit log               | Suspicious DB access / queries                            |
 
 ---
 
 ## 5. FIREWALL (Windows Defender Firewall Logs)
 
+| Event ID | Name                            | Description                           | Threat Hunting Value                                      |
+| -------- | ------------------------------- | ------------------------------------- | --------------------------------------------------------- |
+| 2004     | Firewall Rule Added             | A new firewall rule was created       | Defense evasion / persistence (allow malicious traffic)   |
+| 2005     | Firewall Rule Modified          | Existing firewall rule changed        | Rule tampering to bypass restrictions                     |
+| 2006     | Firewall Rule Deleted           | Firewall rule removed                 | Defense evasion (removing protections)                    |
+| 2033     | Firewall Rule Applied           | Firewall rule enforced                | Track suspicious or newly added rules                     |
+| 5152     | Packet Blocked                  | Network packet blocked by firewall    | Detect scanning, brute force, malicious traffic           |
+| 5154     | Firewall Allowed Listening Port | App opened a listening port           | Backdoors / unauthorized services                         |
+| 5156     | Connection Allowed              | Connection permitted through firewall | C2 traffic, lateral movement                              |
+| 5157     | Connection Blocked              | Connection blocked by firewall        | Suspicious outbound attempts                              |
+| 5158     | Local Port Binding              | Process bound to a local port         | Service creation, reverse shells                          |
+
 ---
 
 ## 6. POWERSHELL
+
+| Event ID | Name                 | Description                          | Threat Hunting Value                                   |
+| -------- | -------------------- | ------------------------------------ | ------------------------------------------------------ |
+| 400      | Engine Start         | PowerShell engine started            | Track PowerShell usage (who/when)                      |
+| 403      | Engine Stop          | PowerShell engine stopped            | Session tracking                                       |
+| 600      | Provider Lifecycle   | PowerShell provider started          | Context for execution                                  |
+| 800      | Pipeline Execution   | PowerShell pipeline executed         | Command execution tracking                             |
+| 4103     | Module Logging       | PowerShell module activity logged    | Track cmdlets used (Get-Process, Invoke-Command, etc.) |
+| 4104     | Script Block Logging | PowerShell script content recorded   | Detect encoded/malicious scripts (VERY HIGH VALUE)     |
+| 4105     | Script Started       | PowerShell script execution started  | Track script execution timeline                        |
+| 4106     | Script Completed     | PowerShell script execution finished | Execution lifecycle                                    |
 
 ---
 
 ## 7. KERBEROS / AUTHENTICATION (AD DS Logs)
 
+| Event ID | Name                               | Description                       | Threat Hunting Value                             |
+| -------- | ---------------------------------- | --------------------------------- | ------------------------------------------------ |
+| 4768     | Kerberos TGT Requested             | Ticket Granting Ticket requested  | Track initial authentication (who is logging in) |
+| 4769     | Kerberos Service Ticket Requested  | Service ticket requested          | Lateral movement / service access tracking       |
+| 4770     | Kerberos Ticket Renewed            | TGT renewed                       | Long-lived sessions / persistence                |
+| 4771     | Kerberos Pre-Authentication Failed | Kerberos authentication failed    | Password spraying / brute-force detection        |
+| 4776     | NTLM Authentication                | NTLM authentication attempt       | Legacy auth abuse / pass-the-hash                |
+| 4624     | Successful Logon (Correlated)      | Successful authentication         | Validate login success after Kerberos activity   |
+| 4625     | Failed Logon (Correlated)          | Failed authentication             | Confirm failed attempts                          |
+| 4648     | Explicit Credentials Logon         | Logon using alternate credentials | Pass-the-hash / lateral movement                 |
+| 4672     | Privileged Logon                   | Admin privileges assigned         | Privileged session tracking                      |
+
 ---
 
-## 8. REMOTE DESKTOP SERVICES (RDP Logs)
+## 8. FILE SHARE / SMB ACTIVITY
 
 ---
 
-## 9. FILE SHARE / SMB ACTIVITY
+## 9. TASK SCHEDULER
 
 ---
 
-## 10. TASK SCHEDULER
-
----
-
-## 11. WINDOWS DEFENDER / ANTIVIRUS
+## 10. WINDOWS DEFENDER / ANTIVIRUS
