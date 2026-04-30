@@ -1,13 +1,15 @@
 # Windows EventID Book
 
+[Windows EventID Book](banner-image.png)
+
 **Windows EventID Book** is a structured reference of Windows Event IDs organized for threat hunting, DFIR analysis, and SOC investigations.
 
 ---
 
 ## Event Log Categories
 
-1. SECURITY (Security.evtx)
-2. SYSMON (Sysmon Operational Log)
+1. [SECURITY (Security.evtx)](#1-security-securityevtx)
+2. [SYSMON (Sysmon Operational Log)](#2-sysmon-sysmon-operational-log)
 3. SYSTEM (System.evtx)
 4. APPLICATION (Application.evtx)
 5. FIREWALL (Windows Defender Firewall Logs)
