@@ -27,9 +27,9 @@ This project helps security professionals quickly identify, understand, and inve
 5. [FIREWALL (Windows Defender Firewall Logs)](#5-firewall-windows-defender-firewall-logs)
 6. [POWERSHELL](#6-powershell)
 7. [KERBEROS / AUTHENTICATION (AD DS Logs)](#7-kerberos--authentication-ad-ds-logs)
-8. [FILE SHARE / SMB ACTIVITY]()
-9. [TASK SCHEDULER]()
-10. [WINDOWS DEFENDER / ANTIVIRUS]()
+8. [FILE SHARE / SMB ACTIVITY](#8-file-share--smb-activity)
+9. [TASK SCHEDULER](#9-task-scheduler)
+10. [WINDOWS DEFENDER / ANTIVIRUS](#10-windows-defender--antivirus)
 
 ---
 
